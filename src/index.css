@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Libre Caslon Text", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --color-cream: #fdf8f7;
+  --color-cream-2: #f7f3f1;
+
+  --color-brown: #795746;
+  --color-brown-dark: #5f3f30;
+
+  --color-sage: #4c6455;
+
+  --color-peach: #ffd0bb;
+
+  --color-ink: #1c1b1b;
+  --color-muted: #4a463f;
+
+  --color-line: #ccc6bc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(92, 61, 46, 0.06);
+
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.35);
+}
+
+.organic-1 {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.organic-2 {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.hover-scale {
+  transition:
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+
+  transition:
+    opacity 900ms ease,
+    transform 900ms ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+::selection {
+  background: #ffd0bb;
+  color: #5f3f30;
+}
+
+/* ================================
+   SIMPLE PAGE ANIMATIONS
+================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 2s ease-out forwards;
+}
+
+.animate-fade-zoom {
+  animation: fadeInZoom 1s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out forwards;
+}
