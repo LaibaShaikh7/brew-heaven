@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import {
@@ -144,49 +144,6 @@ export default function HotCoffee() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const heroImageRef = useRef(null);
-
-const handleHeroMouseMove = (e) => {
-  const container = e.currentTarget;
-
-  const rect = container.getBoundingClientRect();
-
-  const x = (e.clientX - rect.left) / rect.width;
-  const y = (e.clientY - rect.top) / rect.height;
-
-  const moveX = x - 0.5;
-  const moveY = y - 0.5;
-
-  const background = container.querySelector(".coffee-background");
-  const cup = container.querySelector(".coffee-cup");
-
-  if (background) {
-    background.style.transform = `
-      translate(${moveX * 8}px, ${moveY * 8}px)
-    `;
-  }
-
-  if (cup) {
-    cup.style.transform = `
-      translate(${moveX * 35}px, ${moveY * 35}px)
-      translateZ(100px)
-      scale(1.04)
-    `;
-  }
-};
-const handleHeroMouseLeave = () => {
-  const element = heroImageRef.current;
-
-  if (!element) return;
-
-  element.style.transform = `
-    perspective(1000px)
-    rotateX(0deg)
-    rotateY(0deg)
-    scale(1)
-  `;
-};
-
   const {
     addToCart,
     totalItems,
@@ -307,108 +264,55 @@ const handleHeroMouseLeave = () => {
       </nav>
 
 
-      {/* ================= HERO ================= */}
-
-      <header className="relative flex min-h-[819px] items-center overflow-hidden px-5 pb-24 pt-32 md:px-16 md:pb-32 md:pt-48">
-
-        <div
-          className="absolute right-0 top-0 -z-10 h-full w-2/3 bg-cover bg-center opacity-20 mix-blend-multiply"
-          style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtQhk1DYKfz5LZPa_zF11Y2ouYtIGHnsyOlCou0Xe85BeQ9td8s8-6cLWgrLI7yj5HMtVQpeKtcTX4QV6ZPlX-PWcrU4kA6w5_-FkQDOs_Ssnn9XhRSRQupolZUR1x2Nk7z1RQgzsFXIcvHnM6wUX4_wuczg2rH5jc-v-JOpKbtWm9OwQQsN9YFaFGFa9qDAPWMxs64Vzxu0srgDPjtAZliHjDZh4fLIjcrZoFBjPtkENAXKVMEES2')",
-          }}
-        />
-
-        <div className="absolute bottom-0 left-10 -z-10 h-96 w-96 rounded-full bg-secondary-fixed opacity-30 blur-3xl" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-6 md:grid-cols-12">
-
-         <div className="animate-fade-up flex flex-col justify-center space-y-8 md:col-span-7 lg:col-span-6">
-
-            <div className="flex items-center gap-2">
-
-              <span className="h-px w-12 bg-outline" />
-
-              <span className="text-xs uppercase tracking-widest text-outline">
-                The Winter Collection
-              </span>
-
-            </div>
-
-            <h1 className="font-headline-lg text-5xl leading-tight text-on-surface md:text-7xl">
-
-              The Warmth of
-              <br />
-
-              <span className="italic text-secondary">
-                Tradition
-              </span>
-
-            </h1>
-
-            <p className="max-w-md text-lg leading-relaxed text-on-surface-variant">
-
-              A sensory journey through our curated hot rituals.
-              Experience the tactile comfort of warm ceramics and
-              the deep, complex notes of perfectly extracted brews.
-
-            </p>
-
-            <div className="pt-4">
-
-              <a
-                href="#coffee-collection"
-                className="inline-block rounded-full bg-secondary px-8 py-4 text-xs uppercase tracking-widest text-white shadow-[0_12px_40px_rgba(92,61,46,0.08)] transition duration-300 hover:scale-105"
-              >
-                Explore the Rituals
-              </a>
-
-            </div>
-
-          </div>
-
-
-         <div
-  className="relative mt-16 hidden md:col-span-5 md:mt-0 md:block lg:col-span-6"
-  onMouseMove={handleHeroMouseMove}
-  onMouseLeave={handleHeroMouseLeave}
->
-
-        <div
-  ref={heroImageRef}
-  className="organic-shape-1 relative h-[600px] w-full overflow-hidden shadow-2xl"
+<header
+  className="relative min-h-[720px] overflow-hidden bg-cover bg-center"
   style={{
-    transition: "transform 0.15s ease-out",
-    transformStyle: "preserve-3d",
-     perspective: "1000px",
+    backgroundImage: "url('/images/hero-coffee.jpg')",
   }}
 >
+  {/* Soft overlay so the text stays readable */}
+  <div className="absolute inset-0 bg-white/15" />
 
-  <img
-  src="/images/coffee3d/background.png"
-  alt=""
-  clclassName="coffee-background absolute inset-0 h-full w-full object-cover"
-  style={{
-    transform: "translateZ(0px)",
-  }}
-/>
+  {/* Hero content */}
+  <div className="relative z-10 mx-auto flex min-h-[720px] w-full max-w-[1280px] items-center px-5 md:px-16">
 
-            <img
-  src="/images/coffee3d/coffee-cup.png"
-  alt="Hot coffee"
-className="coffee-cup absolute inset-0 h-full w-full object-contain"
-  style={{
-    transform: "translateZ(100px)",
-  }}
-/>
-            </div>
+    {/* LEFT SIDE — TEXT */}
+    <div className="flex max-w-xl flex-col justify-center space-y-8 md:w-1/2">
 
-          </div>
+      <div className="flex items-center gap-2">
+        <span className="h-px w-12 bg-outline" />
 
-        </div>
+        <span className="text-xs uppercase tracking-widest text-outline">
+          The Winter Collection
+        </span>
+      </div>
 
-      </header>
+      <h1 className="font-headline-lg text-5xl leading-tight text-on-surface md:text-7xl">
+        The Warmth of
+        <br />
+        <span className="italic text-secondary">
+          Tradition
+        </span>
+      </h1>
 
+      <p className="max-w-md text-lg leading-relaxed text-on-surface-variant">
+        A sensory journey through our curated hot rituals.
+        Experience the tactile comfort of warm ceramics and
+        the deep, complex notes of perfectly extracted brews.
+      </p>
+
+      <div className="pt-4">
+        <a
+          href="#coffee-collection"
+          className="inline-block rounded-full bg-secondary px-8 py-4 text-xs uppercase tracking-widest text-white shadow-[0_12px_40px_rgba(92,61,46,0.08)] transition duration-300"
+        >
+          Explore the Rituals
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
 
       {/* ================= MAIN ================= */}
 

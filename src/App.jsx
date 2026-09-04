@@ -7,6 +7,8 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import Navbar from "./components/Navbar";
+
 import HotCoffee from "./pages/HotCoffee";
 import ColdCoffee from "./pages/ColdCoffee";
 import SpecialDrinks from "./pages/SpecialDrinks";
@@ -20,6 +22,7 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
+        <Navbar />
         <Routes>
 
           {/* ================= MENU ================= */}
@@ -44,14 +47,12 @@ function App() {
             element={<Desserts />}
           />
 
-
           {/* ================= ACCOUNT ================= */}
 
           <Route
             path="/signup"
             element={<Signup />}
           />
-
 
           {/* ================= SHOPPING ================= */}
 
@@ -72,7 +73,6 @@ function App() {
             element={<OurStory />}
           />
 
-
           {/* ================= HOME ================= */}
 
           <Route
@@ -84,7 +84,6 @@ function App() {
               />
             }
           />
-
 
           {/* ================= INVALID URL ================= */}
 
